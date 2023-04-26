@@ -10,6 +10,7 @@
             <th scope="col">Description</th>
             <th scope="col">Quantity</th>
             <th scope="col">Purchase Date</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -19,6 +20,9 @@
             <td>{{ equipment.description }}</td>
             <td>{{ equipment.quantity }}</td>
             <td>{{ equipment.created_at }}</td>
+            <td><a href="{% url 'edit_equipment' %}"><i class="fa-light fa-pen-to-square"></i></a>  
+            <a href="{% url 'delete_equipment' %}"><i class="fa-light fa-trash"></i></a>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
