@@ -1,0 +1,28 @@
+{% extends 'equipment/base.html' %}
+
+{% block content %}
+<section class="inventory-section container mt-5">
+    <h1>Inventory</h1>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Purchase Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for equipment in equipments %}
+          <tr>
+            <td>{{ equipment.name }}</td>
+            <td>{{ equipment.description }}</td>
+            <td>{{ equipment.quantity }}</td>
+            <td>{{ equipment.created_at }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p><a href="{% url 'add_equipment' %}">Add New Equipment</a></p>
+</section>   
+{% endblock content %}

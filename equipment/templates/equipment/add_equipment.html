@@ -1,0 +1,13 @@
+{% extends 'equipment/base.html' %}
+
+{% block content %}
+<section class="inventory-section container mt-5">
+    <h1>Add equipment</h1>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+</section>   
+{% endblock content %}
