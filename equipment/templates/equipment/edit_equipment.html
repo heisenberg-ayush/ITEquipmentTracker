@@ -1,16 +1,15 @@
 {% extends 'equipment/base.html' %}
-
 {% load crispy_forms_tags %}
 
 {% block content %}
   <div class="container mt-4">
-    <h1 class="text-center mb-4">Add Equipment</h1>
+    <h1 class="text-center">Edit Equipment</h1>
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form|crispy }}
-          <button class="btn btn-primary mt-4 mb-2" type="submit">Add Equipment</button>
+          <button class="btn btn-primary mt-4 mb-2" type="submit">Update Equipment</button>
         </form>
       </div>
     </div>

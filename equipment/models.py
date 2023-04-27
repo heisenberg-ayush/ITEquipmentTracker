@@ -5,6 +5,7 @@ class Equipment(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     quantity = models.IntegerField()
+    image_url = models.ImageField(upload_to='images/', null=True, blank=True)
     # serial_number = models.CharField(max_length=100)
     # purchase_date = models.DateField()
 

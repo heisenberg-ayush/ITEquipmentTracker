@@ -1,32 +1,75 @@
 {% extends 'equipment/base.html' %}
+{% load static %}
 
 {% block content %}
-<section class="inventory-section container mt-5">
-    <h1>Inventory</h1>
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Purchase Date</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for equipment in equipments %}
-          <tr>
-            <td>{{ equipment.name }}</td>
-            <td>{{ equipment.description }}</td>
-            <td>{{ equipment.quantity }}</td>
-            <td>{{ equipment.created_at }}</td>
-            <td><a href="{% url 'edit_equipment' %}"><i class="fa-light fa-pen-to-square"></i></a>  
-            <a href="{% url 'delete_equipment' %}"><i class="fa-light fa-trash"></i></a>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <p><a href="{% url 'add_equipment' %}">Add New Equipment</a></p>
-</section>   
-{% endblock content %}
+
+<div class="container">
+  <h1 class="">Inventory</h1>
+  <div class="row">
+    <div class="col-md-6">
+        <form method="get">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search equipment...">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+  <div class="row justify-content-center">
+    {% for item in equipments %}
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-lg">
+        <img src="{% static 'images/printer.avif' %}" class="card-img-top" alt="{{ item.name }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+                  <p class="card-text">{{ item.description }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="card-text m-0"><small>Quantity: {{ item.quantity }}</small></p>
+            <div class="btn-group">
+              <a href="{% url 'edit_equipment' item.pk %}" class="btn btn-sm btn-outline-secondary"><i class="fa-regular fa-pen-to-square"></i></a>
+              <a  class="btn btn-sm btn-outline-secondary" href="{% url 'delete_equipment' item.pk %}"><i class="fa-regular fa-trash"></i></a>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  /* Add animation to cards */
+  .card {
+    animation: fade-in 1s ease;
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Add custom styles for card and image */
+  .card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card-img-top {
+    object-fit: cover;
+    height: 200px;
+  }
+</style>
+{% endblock %}
