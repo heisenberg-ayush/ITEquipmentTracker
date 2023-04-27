@@ -48,8 +48,17 @@ def edit_equipment(request, pk):
 @login_required(login_url='/login/')
 def delete_equipment(request, pk):
     equipment = get_object_or_404(Equipment, pk=pk)
-    equipment.delete()
-    return redirect('index')
+    if request.method == 'POST':
+        quantity = int(request.POST['quantity'])
+        if quantity > 0 and quantity <= equipment.quantity:
+            equipment.quantity -= quantity
+            equipment.save()
+        return redirect('index')
+    return render(request, 'equipment/delete_equipment.html', {'equipment': equipment})
+# def delete_equipment(request, pk):
+#     equipment = get_object_or_404(Equipment, pk=pk)
+#     equipment.delete()
+#     return redirect('index')
 
 @login_required(login_url='/login/')
 def equipment_list(request):

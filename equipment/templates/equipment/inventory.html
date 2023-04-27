@@ -22,7 +22,19 @@
     {% for item in equipments %}
     <div class="col-md-4 mb-4">
       <div class="card shadow-lg">
-        <img src="{% static 'images/printer.avif' %}" class="card-img-top" alt="{{ item.name }}">
+        {% if item.name == "Laptop" %}
+          <img src="{% static 'images/laptop.avif' %}" class="card-img-top" alt="{{ item.name }}">
+        {% elif item.name == 'Monitor' %}
+          <img src="{% static 'images/monitor.avif' %}" class="card-img-top" alt="{{ item.name }}">
+        {% elif item.name == 'Mouse' %}
+          <img src="{% static 'images/mouse.avif' %}" class="card-img-top" alt="{{ item.name }}">
+        {% elif item.name == 'Keyboard' %}
+          <img src="{% static 'images/keyboard.avif' %}" class="card-img-top" alt="{{ item.name }}">
+        {% elif item.name == 'Printer' %}
+          <img src="{% static 'images/printer.avif' %}" class="card-img-top" alt="{{ item.name }}">
+        {% else %}
+          <img src="{% static 'images/image_no.jpg' %}" class="card-img-top" alt="{{ item.name }}">
+        {% endif %}
         <div class="card-body">
           <h5 class="card-title">{{ item.name }}</h5>
                   <p class="card-text">{{ item.description }}</p>

@@ -1,0 +1,14 @@
+{% extends 'equipment/base.html' %}
+
+{% block content %}
+<h1>Delete {{ equipment.name }}</h1>
+<p>Current quantity: {{ equipment.quantity }}</p>
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="quantity">Quantity to delete:</label>
+    <input type="number" class="form-control" id="quantity" name="quantity" min="1" max="{{ equipment.quantity }}" required>
+  </div>
+  <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+{% endblock %}
