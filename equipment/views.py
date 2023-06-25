@@ -55,18 +55,14 @@ def delete_equipment(request, pk):
             equipment.save()
         return redirect('index')
     return render(request, 'equipment/delete_equipment.html', {'equipment': equipment})
-# def delete_equipment(request, pk):
-#     equipment = get_object_or_404(Equipment, pk=pk)
-#     equipment.delete()
-#     return redirect('index')
 
-@login_required(login_url='/login/')
-def equipment_list(request):
-    query = request.GET.get('q')
-    if query:
-        equipments = Equipment.objects.filter(
-            Q(name__icontains=query) | Q(description__icontains=query)
-        )
-    else:
-        equipments = Equipment.objects.all()
-    return render(request, 'equipment_list.html', {'equipments': equipments})
+# @login_required(login_url='/login/')
+# def equipment_list(request):
+#     query = request.GET.get('q')
+#     if query:
+#         equipments = Equipment.objects.filter(
+#             Q(name__icontains=query) | Q(description__icontains=query)
+#         )
+#     else:
+#         equipments = Equipment.objects.all()
+#     return render(request, 'equipment_list.html', {'equipments': equipments})
